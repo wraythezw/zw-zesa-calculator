@@ -25,6 +25,14 @@
       </form>
       <script type="text/javascript">
         function calculate(){
+          // Tidy up First
+          document.getElementById("tier1").innerText = "0 ZWL";
+          document.getElementById("tier2").innerText = "0 ZWL";
+          document.getElementById("tier3").innerText = "0 ZWL";;
+          document.getElementById("units").innerText = "0 Kwh/Units";
+          document.getElementById("cost").innerText= "0 ZWL";
+
+
           var kwh = document.getElementById("kwh").value;
           var requestedKwh = kwh;
           var rates = {
@@ -72,13 +80,17 @@
           console.log(
             "Tier1:" + tier1cost + "\nTier2:" + tier2cost + "\nTier3:" + tier3cost
           );
+          document.getElementById("tier1").innerText = tier1cost + " ZWL";
+          document.getElementById("tier2").innerText = tier2cost + " ZWL";
+          document.getElementById("tier3").innerText = tier3cost + " ZWL";
           document.getElementById("units").innerText = requestedKwh + " Kwh/Units";
           document.getElementById("cost").innerText=totalCost + " ZWL";
 
           document.getElementById("results").style.display="block";
+          document.getElementById("results2").style.display="block";
         }
       </script>
-      <table class="uk-table uk-table-striped" id="results" style="display:none;">
+      <table class="uk-table uk-table-striped uk-table-large" id="results" style="display:none;">
           <caption>Results</caption>
           <tbody>
               <tr>
@@ -88,6 +100,29 @@
               <tr>
                   <td>Cost</td>
                   <td id="cost">ZWL</td>
+              </tr>
+          </tbody>
+        </table>
+        <table class="uk-table uk-table-striped" id="results2" style="display:none;">
+            <caption>Breakdown</caption>
+            <thead>
+            <tr>
+              <th>Pricing Tier</th>
+              <th>ZWL</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>Tier 1</td>
+                  <td id="tier1">0 ZWL</td>
+              </tr>
+              <tr>
+                  <td>Tier 2</td>
+                  <td id="tier2">0 ZWL</td>
+              </tr>
+              <tr>
+                  <td>Tier 3</td>
+                  <td id="tier3">0 ZWL</td>
               </tr>
           </tbody>
       </table>
