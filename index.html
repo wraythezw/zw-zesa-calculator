@@ -51,17 +51,17 @@
           console.log("kwh:" + kwh);
           // Now, calculate Tier 2 (>51 < 200)
           console.log(kwh);
-          if(kwh >51 && kwh<= 200){
+          if(kwh<= 150){
             // Within the bracket
             tier2cost = kwh * rates.tier2;
             tier2units = kwh;
             kwh = kwh - kwh;
 
-          }else if (kwh > 200){
-            tier2cost = 200 * rates.tier2;
-            tier2units = 200;
+          }else if (kwh > 150){
+            tier2cost = 150 * rates.tier2;
+            tier2units = 150;
             console.log(kwh);
-            kwh = kwh - 200;
+            kwh = kwh - 150;
             console.log(kwh);
           }
           // Finally calculate the third tier
