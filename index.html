@@ -39,11 +39,12 @@
           if(kwh <= 50){
             tier1cost = kwh * rates.tier1;
             tier1units = kwh;
+            kwh= kwh   - kwh;
           }
           if(kwh >= 50){
             tier1cost = 50 * rates.tier1;
-            kwh = kwh - 50;
             tier1units = 50;
+            kwh = kwh - 50;
           }
           console.log("tier1: " + tier1cost);
           console.log("tier1units:" + tier1units);
@@ -64,6 +65,9 @@
           tier3units = kwh;
           tier3cost = kwh * rates.tier3;
           var totalCost = tier1cost + tier2cost + tier3cost;
+          console.log(
+            "Tier1:" + tier1cost + "\nTier2:" + tier2cost + "\nTier3:" + tier3cost
+          );
           document.getElementById("units").innerText = requestedKwh + " Kwh/Units";
           document.getElementById("cost").innerText=totalCost + " ZWL";
 
