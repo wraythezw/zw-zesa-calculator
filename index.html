@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ZESA Tarrif Calculator</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+
+    </head>
+    <body>
+    <div>
+      <form action="javascript:void(0);">
+        <fieldset class="uk-fieldset">
+
+            <legend class="uk-legend">Tarrif Calculator</legend>
+
+            <div class="uk-margin">
+                <input class="uk-input" type="text" id="kwh" placeholder="KWh/mo (Units)">
+            </div>
+            <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="calculate();">Calculate</button>
+
+        </fieldset>
+      </form>
+      <script type="text/javascript">
+        function calculate(){
+          var kwh = document.getElementById("kwh").value;
+          var requestedKwh = kwh;
+          var rates = {
+            "tier1":"0.06",
+            "tier2":"0.30",
+            "tier3":"0.40",
+          }
+          var tier1cost = 0; var tier1units = 0;
+          var tier2cost = 0; var tier2units = 0;
+          var tier3cost = 0; var tier3units = 0;
+          // First calculate the 50 (<=50)
+          if(kwh <= 50){
+            tier1cost = kwh * rates.tier1;
+            tier1units = kwh;
+          }
+          if(kwh >= 50){
+            tier1cost = 50 * rates.tier1;
+            kwh = kwh - 50;
+            tier1units = 50;
+          }
+          console.log("tier1: " + tier1cost);
+          console.log("tier1units:" + tier1units);
+          console.log("kwh:" + kwh);
+          // Now, calculate Tier 2 (>51 < 200)
+          console.log(kwh);
+          if(kwh >51 && kwh<= 200){
+            // Within the bracket
+            tier2cost = kwh * rates.tier2;
+            tier2units = kwh;
+            kwh = kwh - 200;
+          }else if (kwh > 200){
+            tier2cost = 200 * rates.tier2;
+            tier2units = 200;
+            kwh = kwh - 200;
+          }
+          // Finally calculate the third tier
+          tier3units = kwh;
+          tier3cost = kwh * rates.tier3;
+          var totalCost = tier1cost + tier2cost + tier3cost;
+          document.getElementById("units").innerText = requestedKwh + " Kwh/Units";
+          document.getElementById("cost").innerText=totalCost + " ZWL";
+
+          document.getElementById("results").style.display="block";
+        }
+      </script>
+      <table class="uk-table uk-table-striped" id="results" style="display:none;">
+          <caption>Results</caption>
+          <tbody>
+              <tr>
+                  <td>Units</td>
+                  <td id="units">Units/Kwh</td>
+              </tr>
+              <tr>
+                  <td>Cost</td>
+                  <td id="cost">ZWL</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+
+    <div>Tinker Script by <a href="https://www.keithro.se/">Keith Rose</a></div>
+    </body>
+</html>
