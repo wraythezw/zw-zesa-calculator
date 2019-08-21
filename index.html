@@ -55,14 +55,18 @@
             // Within the bracket
             tier2cost = kwh * rates.tier2;
             tier2units = kwh;
-            kwh = kwh - 200;
+            kwh = kwh - kwh;
+
           }else if (kwh > 200){
             tier2cost = 200 * rates.tier2;
             tier2units = 200;
+            console.log(kwh);
             kwh = kwh - 200;
+            console.log(kwh);
           }
           // Finally calculate the third tier
           tier3units = kwh;
+          console.log(tier3units);
           tier3cost = kwh * rates.tier3;
           var totalCost = tier1cost + tier2cost + tier3cost;
           console.log(
