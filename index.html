@@ -22,15 +22,15 @@
     </head>
     <body>
     <div>
-      <form action="javascript:void(0);">
+      <form action="javascript:void(0);" class="uk-margin-medium-top">
         <fieldset class="uk-fieldset">
 
-            <legend class="uk-legend">ZESA Tarrif Calculator</legend>
+            <legend class="uk-legend  uk-text-bold uk-text-center">ZESA Tarrif Calculator</legend>
 
-            <div class="uk-margin">
-                <input class="uk-input" type="text" id="kwh" placeholder="KWh/mo (Units)">
+            <div class="uk-text-center">
+                <input class="uk-form-small uk-form-width-large uk-text-center" type="text" id="kwh" placeholder="KWh/mo (Units)">
+                <button style="margin-top:9px" class="uk-button uk-button-primary uk-margin-small-bottom" onclick="calculate();">Calculate</button>
             </div>
-            <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="calculate();">Calculate</button>
 
         </fieldset>
       </form>
@@ -47,9 +47,9 @@
           var kwh = document.getElementById("kwh").value;
           var requestedKwh = kwh;
           var rates = {
-            "tier1":"0.06",
-            "tier2":"0.30",
-            "tier3":"0.40",
+            "tier1":0.06,
+            "tier2":0.30,
+            "tier3":0.40,
           }
           var tier1cost = 0; var tier1units = 0;
           var tier2cost = 0; var tier2units = 0;
@@ -97,26 +97,28 @@
           document.getElementById("units").innerText = requestedKwh + " Kwh/Units";
           document.getElementById("cost").innerText=totalCost + " ZWL";
 
-          document.getElementById("results").style.display="block";
-          document.getElementById("results2").style.display="block";
+          //document.getElementById("results").style.display="block";
+          //document.getElementById("results2").style.display="block";
         }
       </script>
-      <table class="uk-table uk-table-striped uk-table-large" id="results" style="display:none;">
-          <caption>Results</caption>
-          <tbody>
+      <div class="uk-text-center" style="margin-top:15px" >
+        
+        <table class="uk-table uk-table-striped" id="results" style="display:inline;margin-right:220px;">
+            <caption>Results</caption>
+            <tbody>
               <tr>
-                  <td>Units</td>
-                  <td id="units">Units/Kwh</td>
+                <td>Units</td>
+                <td id="units">Units/Kwh</td>
               </tr>
               <tr>
-                  <td>Cost</td>
-                  <td id="cost">ZWL</td>
+                <td>Cost</td>
+                <td id="cost">ZWL</td>
               </tr>
-          </tbody>
-        </table>
-        <table class="uk-table uk-table-striped" id="results2" style="display:none;">
-            <caption>Breakdown</caption>
-            <thead>
+            </tbody>
+          </table>                    
+          <table class="uk-table uk-table-striped" id="results2" style="display:inline;margin-left:0px;">
+              <caption>Breakdown</caption>
+              <thead>
             <tr>
               <th>Pricing Tier</th>
               <th>ZWL</th>
@@ -126,19 +128,18 @@
               <tr>
                   <td>Tier 1</td>
                   <td id="tier1">0 ZWL</td>
-              </tr>
+                </tr>
               <tr>
-                  <td>Tier 2</td>
+                <td>Tier 2</td>
                   <td id="tier2">0 ZWL</td>
               </tr>
               <tr>
                   <td>Tier 3</td>
                   <td id="tier3">0 ZWL</td>
-              </tr>
-          </tbody>
-      </table>
-    </div>
-
-    <div>Tinker Script by <a href="https://www.keithro.se/">Keith Rose</a>. <a href="https://github.com/wraythezw/zw-zesa-calculator">GIT</a> </div>
+                </tr>
+              </tbody>
+            </table>                      
+    </div>   
+    <div class="uk-text-center">Original Tinker Script by <a href="https://www.keithro.se/">Keith Rose</a>. <a href="https://github.com/wraythezw/zw-zesa-calculator">GIT</a> </div>
     </body>
 </html>
